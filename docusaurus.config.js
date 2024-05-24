@@ -101,18 +101,18 @@ const config = {
             ],
           },
           {
-            title: 'Community',
+            title: 'Support',
             items: [
               {
-                label: 'Stack Overflow',
+                label: 'Investors',
                 href: 'https://stackoverflow.com/questions/tagged/docusaurus',
               },
               {
-                label: 'Discord',
+                label: 'Issuers',
                 href: 'https://discordapp.com/invite/docusaurus',
               },
               {
-                label: 'Twitter',
+                label: 'Platforms',
                 href: 'https://twitter.com/docusaurus',
               },
             ],
@@ -125,13 +125,13 @@ const config = {
                 to: '/blog',
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: 'Home',
+                href: 'https://accredd.com',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Accredd, Inc.`,
       },
       prism: {
         theme: prismThemes.github,
