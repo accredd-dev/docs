@@ -1,0 +1,8 @@
+{
+  "label": "Embedded API",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "The fastest implementation method using our out-of-the-box iframe modal."
+  }
+}
