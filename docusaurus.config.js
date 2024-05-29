@@ -68,9 +68,9 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'My Site',
+        title: 'Accredd API',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Accredd Logo',
           src: 'img/logo.svg',
         },
         items: [
@@ -78,12 +78,12 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Docs',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            href: 'https://accredd.com',
+            label: 'Accredd Home',
             position: 'right',
           },
         ],
@@ -95,7 +95,7 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
+                label: 'API Docs',
                 to: '/docs/intro',
               },
             ],
@@ -110,10 +110,6 @@ const config = {
               {
                 label: 'Issuers',
                 href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Platforms',
-                href: 'https://twitter.com/docusaurus',
               },
             ],
           },

@@ -8,8 +8,8 @@ const FeatureList = [
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Accredd was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Accredd API was designed from the ground up to be
+        used to get a verification service up and running quickly.
       </>
     ),
   },
@@ -18,18 +18,17 @@ const FeatureList = [
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Accredd lets you focus on your platform, and we&apos;ll do the accreditation checks.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Powered by Azure',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        All files are encrypted at rest and in transit. We store everything
+        in the cloud for maximum security and privacy.
       </>
     ),
   },
