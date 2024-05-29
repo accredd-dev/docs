@@ -32,7 +32,7 @@ The endpoint `GET/v1/verifications/{transactionID}` enables you to get the statu
 This feedback is also helpful for the issuer (the investor's sponsor) so it keeps them in the loop. Best practice is to surface the feedback to the end user and their issuer.
 
 ### TransactionID versus ExternalID
-They are the same. You can pass us an `externalUniqueID` or we will generate a unique transactionID for you. Either way, you will need this unique ID to get the status for a submission.
+They are the same. You can pass us an `externalUniqueID` or we will generate a unique `transactionID` for you. Either way, you will need this unique ID to get the status for a submission.
 
 ### Using the `PUT` endpoint for development
 The endpoint `PUT/v1/verifications/{transactionID}` is used to manipulate the status of a submission (“Processing”, “Failed”, “Verified”, “Expired”) during development. This allows you to handle the various scenarios of the submission result.

@@ -4,55 +4,52 @@ sidebar_position: 4
 
 # Traditional API
 
-The Embedded UI API model is useful if you want the fastest time to market and are not interested in building or maintaining an investor verification UI.  The out-of-the-box embedded UI modal is highly flexible and shipped with many configurable options which you can hide or show based on what information you want the user to see in your application.
+This API model is useful if you want to completely build out your own investor verification user experience.  We recommend you start with the Embedded UI API model first unless you already have a verification UI or have some special requirements which you find the Embedded UI lacking.  Contact us if you need to talk to one of our experts about choosing an integration model.
 
 #### Implementation Overview
-- Obtain an API Key from your dashboard.
-- Call the `embed-ui-link` endpoint to get an embeddable link.
-- Use the embeddable link in your application.
-- Get the status on a verification submission.  If you are in Development mode, you can set and get different verification statuses to complete your integration.  
-- Seamlessly switch from Development mode to Production mode with the same API Key.
-- Optionally, download a verification letter. If you are not interested in storing or managing a verification letter, you can skip this step.
+- Generate Obtain an API Key from your dashboard.
+- Submit a new verification.
+- Get the status on a verification submission.  If you are in Development mode, you can set and get different verification statuses to complete your integration.  The API Key controls which mode you are in.
+- Optionally download a verification letter.  If you are not interested in storing or managing a verification letter, you can skip this step.
 
 ## Implementation Suggestions
 
-### Preloading user information into the modal
-You can save the end user time by passing in information such as their legal name and whether they’re investing as an entity or an individual. Use the `LegalName` setting and `InvestorType` setting to pass in relevant information. We’ll load this data onto the modal for the end user. 
+### Passing in multiple document types
+The properties `Files` and `OtherFiles` are used here. You don’t need to specify the document type as our application will parse them automatically for review.
 
-:::tip[Presets]
-`InvestorType` is particularly helpful as it will surface the relevant accreditation options to the user. Entities have a different set of accreditation options than individuals.
-:::
 
-### Closing the modal after a user submits
-To close the UI modal after a user submits their documents, you’ll want to use the `OnVerifyPostMessage` setting. Essentially, your site will wait to get a message from us once the user hits submit. You can then use this message to close the iframe.
+### Passing a unique identifier
+You will use the property `ExternalUniqueID` to pass in a unique string to represent your end user’s submission. Please note you cannot pass in personal identifiable information. If you choose not to pass in a unique ID, we will generate a unique `transactionID` for you which you can then use to retrieve the status of a verification within our 12-hour service-level agreement timeframe.
 
 ### Passing our feedback to your users
 The endpoint `GET/v1/verifications/{transactionID}` enables you to get the status for any given submission. If the status is “Failed”, the property `rejectionComment` has a string with specific feedback provided by our verification team. You can pass this along to the end user and enable them to try again.
 
-This feedback is also helpful for the issuer (the investor's sponsor) so it keeps them in the loop. Best practice is to surface the feedback to the end user and their issuer.
+
+:::tip[Best Practice]
+The status and/or feedback is helpful for the issuer (the investor's sponsor) so it keeps them in the loop. It's best practice is to surface the feedback to all users (the investor, their issuer, your support team, etc) so everyone is on the same page.
+:::
 
 ### TransactionID versus ExternalID
-They are the same. You can pass us an `externalUniqueID` or we will generate a unique transactionID for you. Either way, you will need this unique ID to get the status for a submission.
+They are the same. You can pass us an `externalUniqueID` or we will generate a unique `transactionID` for you. Either way, you will need this unique ID to get the status for a submission.
 
 ### Using the `PUT` endpoint for development
 The endpoint `PUT/v1/verifications/{transactionID}` is used to manipulate the status of a submission (“Processing”, “Failed”, “Verified”, “Expired”) during development. This allows you to handle the various scenarios of the submission result.
+
+### Retrieving a submission
+You can view production API submissions within the “Dashboard” tab by examining the interactive chart “API Count by Status”. It’s best to retrieve the status of your submissions programmatically using the corresponding endpoint. 
 
 ## Request Body
 You can manipulate the various parameters to show relevant options to the end user. For example, if you already have the end user's `LegalName`, you may pass it to us so we can display it for them. This saves the end user time.
 
 | Parameter                   | Data Type     | Description      |
 |-----------------------------|---------------|------------------|
-| `IsPublicURL`               | boolean       | Set this to true if the link for the embedded UI is not customized for each investor and is reused for multiple verifications|
-| `IsInsideIframe`            | boolean       | Set this to true if the link for the embedded UI will be hosted in an iframe|
-| `OnVerifyPostMessage`       | boolean       | Set this to true if the hosting site needs to get a post message from Accredd right after the user submits a new verification. Requires `IsInsideIframe` to be true.|
-| `ExternalUniqueID`          | string        | A unique parameter that is passed into Accredd as a part of a new submission. If the value is blank, a unique transactionID will be generated and returned. Use your externalUniqueID or our transactionID on subsequent API calls to track the submission. This requires `IsPublicURL` to be false.|
-| `InvestorType`              | string        | The type of legal name submitted. Possible values: Individual or Entity|
-| `LegalName`                 | string        | The legal name of an individual or entity for this submission|
-| `Comment`                   | string        | Optional. Add a submission comment for reviewer|
-| `InvalidRequestRedirectURL` | string        | If a submission is not successful, redirect to the URL  |
-| `OnSubmitRedirectURL`       | string        | If a submission is successful, append a transactionID to the URL and redirect to it|
-| `ShowIncomeTab`             | boolean       | Set this to true if displaying the Income upload option|
-| `ShowNetWorthTab`           | boolean       | Set this to true if displaying the Net Worth upload option |
-| `ShowOtherLicTab`           | boolean       | Set this to true if displaying the Licensed Professional upload option |
-| `ShowOtherLetterTab`        | boolean       | Set this to true if displaying the Letter upload option |
-| `ShowTopBar`                | boolean       | Set this to true if displaying the legal name and investor type fields for user input|
+| `InvestorType`          | string    | The end user's entity type. Possible values are `Individual` or `Entity`|
+| `VerificationType`      | string    | The SEC standard the investor is verifying through, e.g. Income, Net Worth, Financial Professional  |
+| `LegalName`             | string    | The legal name the end user is trying to verify for accreditation. It could be a person's name or an entity's name|
+| `Amount`                | number    | Input field for the end user to provide additional information such as expected income for the current year or overall net worth|
+| `Comment`               | string    | Optional text field for the end user to include relevant details        |
+| `LicensedProCRDNumber`  | string    | A professional license number our team would use to verify the validity of the end user's status|
+| `Files`                 | array     | Input field for users to attach relevant documents. File limit size is 50MB. |
+| `OtherFiles`            | array     | Additional input field for users to attach additional documents such as credit report or entity formation documents |
+| `ExternalUniqueID`      | string    | Optional. A unique parameter that is passed into Accredd as part of a new submission. If the value is blank, a unique `transactionID` will be generated and returned. Use your `externalUniqueID` or our `transactionID` on subsequent API calls to track the submission. |
+
