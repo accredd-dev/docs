@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Traditional API
+# Traditional Implementation
 
 This API model is useful if you want to completely build out your own investor verification user experience.  We recommend you start with the Embedded UI API model first unless you already have a verification UI or have some special requirements which you find the Embedded UI lacking.  Contact us if you need to talk to one of our experts about choosing an integration model.
 
