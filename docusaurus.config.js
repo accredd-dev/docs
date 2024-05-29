@@ -10,7 +10,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'Accredd Docs & Support',
   tagline: 'Modern Investor Accreditations',
-  favicon: 'img/accreddfavicon.ico',
+  favicon: 'img/favicon-accredd.ico',
 
   // Set the production url of your site here
   url: 'https://docusaur.accredd.com',
@@ -71,7 +71,7 @@ const config = {
         title: 'Accredd API',
         logo: {
           alt: 'Accredd Logo',
-          src: 'img/logo.svg',
+          src: 'img/logo-accredd.svg',
         },
         items: [
           {
