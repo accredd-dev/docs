@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Embedded UI API
+# Traditional API
 
 The Embedded UI API model is useful if you want the fastest time to market and are not interested in building or maintaining an investor verification UI.  The out-of-the-box embedded UI modal is highly flexible and shipped with many configurable options which you can hide or show based on what information you want the user to see in your application.
 
