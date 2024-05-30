@@ -21,7 +21,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'hoangtommy', // Usually your GitHub org/user name.
-  projectName: 'docusaur', // Usually your repo name.
+  projectName: 'docs', // Usually your repo name.
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
