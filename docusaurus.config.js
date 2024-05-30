@@ -43,6 +43,7 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
+          routeBasePath: '/',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -74,13 +75,13 @@ const config = {
           src: 'img/logo-accredd.svg',
         },
         items: [
-          {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Docs',
-          },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          // {
+          //   type: 'docSidebar',
+          //   sidebarId: 'tutorialSidebar',
+          //   position: 'left',
+          //   label: 'Docs',
+          // },
+          // {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://accredd.com',
             label: 'Accredd Home',
@@ -92,11 +93,15 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Development',
             items: [
               {
                 label: 'API Docs',
-                to: '/docs/intro',
+                to: '/',
+              },
+              {
+                label: 'API Sandbox',
+                to: 'https://api.accredd.com',
               },
             ],
           },
@@ -105,21 +110,21 @@ const config = {
             items: [
               {
                 label: 'Investors',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                to: 'https://stackoverflow.com/questions/tagged/docusaurus',
               },
               {
                 label: 'Issuers',
-                href: 'https://discordapp.com/invite/docusaurus',
+                to: 'https://discordapp.com/invite/docusaurus',
               },
             ],
           },
           {
             title: 'More',
             items: [
-              {
+              /*{
                 label: 'Blog',
                 to: '/blog',
-              },
+              },*/
               {
                 label: 'Home',
                 href: 'https://accredd.com',
