@@ -8,7 +8,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Accredd Docs & Support',
+  title: 'Accredd API Docs',
   tagline: 'Modern Investor Accreditations',
   favicon: 'img/favicon-accredd.ico',
 
@@ -47,14 +47,14 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://accredd.com',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://accredd.com',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -110,11 +110,15 @@ const config = {
             items: [
               {
                 label: 'Investors',
-                to: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                to: 'https://accredd.com',
               },
               {
                 label: 'Issuers',
-                to: 'https://discordapp.com/invite/docusaurus',
+                to: 'https://accredd.com',
+              },
+              {
+                label: 'support@accredd.com',
+                to: 'mailto:support@accredd.com',
               },
             ],
           },
