@@ -108,14 +108,14 @@ const config = {
           {
             title: 'Support',
             items: [
-              {
-                label: 'Investors',
-                to: 'https://accredd.com',
-              },
-              {
-                label: 'Issuers',
-                to: 'https://accredd.com',
-              },
+              // {
+              //   label: 'Investors',
+              //   to: 'https://accredd.com',
+              // },
+              // {
+              //   label: 'Issuers',
+              //   to: 'https://accredd.com',
+              // },
               {
                 label: 'support@accredd.com',
                 to: 'mailto:support@accredd.com',
