@@ -8,11 +8,7 @@ sidebar_position: 2
 
 Accredd authenticates your API requests using your account’s API keys. Accredd will return an invalid request error if your request doesn’t include a valid API key.
 
-Accredd makes revoking or managing an API key very simple. You can create a `Development` key, a `Production` key, or change access permissions all with a click of a button.
-
-You can use the Accredd Dashboard to generate and control the API keys between `Development` mode and `Production` mode.
-
-All Accredd API requests happen in either Development mode or Production mode. Use the former to test and access dummy data, in addition to manipulating the status of a submission so you can handle the various scenarios. Switch from Development mode to Production mode when you’re ready to deploy the API in a live environment.
+All Accredd API requests happen in either `Development` mode or `Production` mode. Use the former to test and access dummy data, in addition to manipulating the status of a submission so you can handle the various scenarios. Switch from `Development` mode to `Production` mode when you’re ready to deploy the API in a live environment.
 
 ## API Keys
 

@@ -8,14 +8,17 @@ This API model is useful if you want to completely build out your own investor v
 
 #### Implementation Overview
 - Generate Obtain an API Key from your dashboard.
-- Submit a new verification.
-- Get the status on a verification submission.  If you are in Development mode, you can set and get different verification statuses to complete your integration.  The API Key controls which mode you are in.
-- Optionally download a verification letter.  If you are not interested in storing or managing a verification letter, you can skip this step.
+- Submit a new verification using the endpoint `POST/v1/verifications`
+- Get the status on a verification submission using the endpoint `GET/v1/verifications/{transactionID}`.  If you are in Development mode, you can set and get different verification statuses to complete your integration.  The API Key controls which mode you are in.
+- Optionally download the verification letter using the endpoint `GET/v1/verifications/{transactionID}/pdf-letter`.  If you are not interested in storing or managing a verification letter, you can skip this step.
 
 ## Implementation Suggestions
 
+### Passing in an issuer (sponsor) name
+`IssuerName` is an optional property that allows you to include your client's name on the accreditation letter. This allows you to track which investor belong to a specific issuer or sponsor for billing purposes and regulatory purposes. It will default to your company's name if left empty.
+
 ### Passing in multiple document types
-The properties `Files` and `OtherFiles` are used here. You don’t need to specify the document type as our application will parse them automatically for review.
+The properties `Files` and `OtherFiles` are used here. You don’t need to specify the document type as our application will parse them automatically for review. `Files` is the primary field for uploading financial documents, whereas `OtherFiles` is typically used for uploading supporting documents such as ownership documents.
 
 
 ### Passing a unique identifier
@@ -45,6 +48,7 @@ You can manipulate the various parameters to show relevant options to the end us
 |-----------------------------|---------------|------------------|
 | `InvestorType`          | string    | The end user's entity type. Possible values are `Individual` or `Entity`|
 | `VerificationType`      | string    | The SEC standard the investor is verifying through, e.g. Income, Net Worth, Financial Professional  |
+| `IssuerName`                | string        | Optional. The name of the entity issuing the security to the investor (typically the sponsor). This will default to your company's name if left empty.|
 | `LegalName`             | string    | The legal name the end user is trying to verify for accreditation. It could be a person's name or an entity's name|
 | `Amount`                | number    | Input field for the end user to provide additional information such as expected income for the current year or overall net worth|
 | `Comment`               | string    | Optional text field for the end user to include relevant details        |
@@ -53,3 +57,10 @@ You can manipulate the various parameters to show relevant options to the end us
 | `OtherFiles`            | array     | Additional input field for users to attach additional documents such as credit report or entity formation documents |
 | `ExternalUniqueID`      | string    | Optional. A unique parameter that is passed into Accredd as part of a new submission. If the value is blank, a unique `transactionID` will be generated and returned. Use your `externalUniqueID` or our `transactionID` on subsequent API calls to track the submission. |
 
+## Endpoints
+- `POST/v1/verifications` is used to submit an investor's documents for review.
+- `PUT/v1/verifications/{transactionID}` checks the status of any given verification submission.
+- `PUT/v1/verifications/{transactionID}` manipulates the status for a specific submission.
+- `GET/v1/verifications/{transactionID}/pdf-letter` obtains the accreditation letter for a specific submission.
+
+Test and use the endpoints live at [api.accredd.com](https://api.accredd.com)

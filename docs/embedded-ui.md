@@ -8,13 +8,16 @@ The Embedded UI implementation model is useful if you want the fastest time to m
 
 #### Implementation Overview
 - Obtain an API Key from your dashboard.
-- Call the `embed-ui-link` endpoint to get an embeddable link.
+- Call the `POST/v1/verifications/embed-ui-link` endpoint to get an embeddable link.
 - Use the embeddable link in your application.
-- Get the status on a verification submission.  If you are in Development mode, you can set and get different verification statuses to complete your integration.  
+- Get the status on a verification submission using the endpoint `GET/v1/verifications/{transactionID}`.  If you are in Development mode, you can set and get different verification statuses to complete your integration.  
 - Seamlessly switch from Development mode to Production mode with the same API Key.
-- Optionally, download a verification letter. If you are not interested in storing or managing a verification letter, you can skip this step.
+- Optionally download the verification letter using the endpoint `GET/v1/verifications/{transactionID}/pdf-letter`.  If you are not interested in storing or managing a verification letter, you can skip this step.
 
 ## Implementation Suggestions
+
+### Passing in an issuer (sponsor) name
+`IssuerName` is an optional property that allows you to include your client's name on the accreditation letter. This allows you to track which investor belong to a specific issuer or sponsor for billing purposes and regulatory purposes. It will default to your company's name if left empty.
 
 ### Preloading user information into the modal
 You can save the end user time by passing in information such as their legal name and whether they’re investing as an entity or an individual. Use the `LegalName` setting and `InvestorType` setting to pass in relevant information. We’ll load this data onto the modal for the end user. 
@@ -47,6 +50,7 @@ You can manipulate the various parameters to show relevant options to the end us
 | `OnVerifyPostMessage`       | boolean       | Set this to true if the hosting site needs to get a post message from Accredd right after the user submits a new verification. Requires `IsInsideIframe` to be true.|
 | `ExternalUniqueID`          | string        | A unique parameter that is passed into Accredd as a part of a new submission. If the value is blank, a unique transactionID will be generated and returned. Use your externalUniqueID or our transactionID on subsequent API calls to track the submission. This requires `IsPublicURL` to be false.|
 | `InvestorType`              | string        | The type of legal name submitted. Possible values: Individual or Entity|
+| `IssuerName`                | string        | Optional. The name of the entity issuing the security to the investor (typically the sponsor). This will default to your company's name if left empty.|
 | `LegalName`                 | string        | The legal name of an individual or entity for this submission|
 | `Comment`                   | string        | Optional. Add a submission comment for reviewer|
 | `InvalidRequestRedirectURL` | string        | If a submission is not successful, redirect to the URL  |
@@ -56,3 +60,11 @@ You can manipulate the various parameters to show relevant options to the end us
 | `ShowOtherLicTab`           | boolean       | Set this to true if displaying the Licensed Professional upload option |
 | `ShowOtherLetterTab`        | boolean       | Set this to true if displaying the Letter upload option |
 | `ShowTopBar`                | boolean       | Set this to true if displaying the legal name and investor type fields for user input|
+
+## Endpoints
+- `POST/v1/verifications/embed-ui-link` is used to create a unique link to embed within your application.
+- `PUT/v1/verifications/{transactionID}` checks the status of any given verification submission.
+- `PUT/v1/verifications/{transactionID}` manipulates the status for a specific submission.
+- `GET/v1/verifications/{transactionID}/pdf-letter` obtains the accreditation letter for a specific submission.
+
+Test and use the endpoints live at [api.accredd.com](https://api.accredd.com)
