@@ -63,7 +63,7 @@ You can manipulate the various parameters to show relevant options to the end us
 
 ## Endpoints
 - `POST/v1/verifications/embed-ui-link` is used to create a unique link to embed within your application.
-- `PUT/v1/verifications/{transactionID}` checks the status of any given verification submission.
+- `GET/v1/verifications/{transactionID}` checks the status of any given verification submission.
 - `PUT/v1/verifications/{transactionID}` manipulates the status for a specific submission.
 - `GET/v1/verifications/{transactionID}/pdf-letter` obtains the accreditation letter for a specific submission.
 
